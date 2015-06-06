@@ -8,15 +8,16 @@
 #define TO_MB(m) ((m * (unsigned long long)si.mem_unit) / MEGABYTE)
 
 /* set delay for refresh, and switch if refresh is desired */
-static const int delay = 5; /* in seconds */
-static const char refresh = 1; /* if refreshing term is desired */
+static const int DELAY = 5; /* in seconds */
+static const char REFRESH = 1; /* if refreshing term is desired */
 /* set conversion constants */
-const double MEGABYTE = 1024 * 1024;
-void getnprint ();
-void hold ();
+static const double MEGABYTE = 1024 * 1024;
+
+static void getnprint ();
+static void hold ();
 
 int main () {
-    while (refresh == 1) {
+    while (REFRESH == 1) {
 	getnprint();
 	hold();
     }
@@ -40,6 +41,8 @@ void getnprint() {
     long csize = sysconf(_SC_LEVEL1_ICACHE_SIZE) / pow(2, 10);
     long cassoc = sysconf(_SC_LEVEL1_ICACHE_ASSOC);
     long cline = sysconf(_SC_LEVEL1_ICACHE_LINESIZE);
+
+    printf("%d", _SC_LEVEL3_CACHE_SIZE);
 
     /* raw readings */
     printf("\033[1;33m+++ \033[1;32mClinky \033[1;33m+++\033[1;m\n\n");
@@ -90,6 +93,6 @@ void getnprint() {
 
 void hold () {
     fflush(stdout);
-    sleep(delay);
+    sleep(DELAY);
     printf("\033[2J\033[1;H\033[1;30m");
 }
