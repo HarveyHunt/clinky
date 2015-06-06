@@ -72,6 +72,13 @@ void getnprint() {
 
     printf("lvl 2 cache size = %ldK, \n\tassoc = %ld, \n\tline size = %ld\n",
 	   csize, cassoc, cline);
+
+    csize = sysconf(_SC_LEVEL3_CACHE_SIZE) / pow(2, 10);
+    cassoc = sysconf(_SC_LEVEL3_CACHE_ASSOC);
+    cline = sysconf(_SC_LEVEL3_CACHE_LINESIZE);
+
+    printf("lvl 3 cache size = %ldK, \n\tassoc = %ld, \n\tline size = %ld\n",
+	   csize, cassoc, cline);
 }
 
 void hold () {
