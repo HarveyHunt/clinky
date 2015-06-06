@@ -42,8 +42,6 @@ void getnprint() {
     long cassoc = sysconf(_SC_LEVEL1_ICACHE_ASSOC);
     long cline = sysconf(_SC_LEVEL1_ICACHE_LINESIZE);
 
-    printf("%d", _SC_LEVEL3_CACHE_SIZE);
-
     /* raw readings */
     printf("\033[1;33m+++ \033[1;32mClinky \033[1;33m+++\033[1;m\n\n");
     printf("uname:\t\t\033[1;31m%s\n\t\t%s\n\t\t%s\033[1;m\n", ut.sysname, ut.release, ut.version);
